@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌿 LoRRI Carbon Intelligence AI
 
 > A real-time, full-stack freight sustainability platform for shipment-level carbon tracking, route optimization, and ESG reporting.
@@ -135,3 +136,6 @@ Where:
 | AI | Google Gemini Pro (free tier) |
 | Deployment | Vercel (both frontend + backend) |
 | Styling | Custom CSS Design System (dark industrial) |
+=======
+# lorri-carbon-intelligence-ai
+>>>>>>> origin/main
