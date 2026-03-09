@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: #030a06;
+  --surface: #071410;
+  --surface2: #0c1f1a;
+  --surface3: #102820;
+  --border: #0e2e26;
+  --border2: #163d32;
+  --green: #00ff88;
+  --green2: #00cc6a;
+  --green3: #007a40;
+  --green4: #004d28;
+  --amber: #ffaa00;
+  --red: #ff4444;
+  --blue: #00cfff;
+  --purple: #a855f7;
+  --text: #e0f5ec;
+  --text2: #8ab8a0;
+  --muted: #4a7a65;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --glow-green: 0 0 20px rgba(0,255,136,0.2);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,136,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none; z-index: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%,100% { opacity: 1; } 50% { opacity: 0.15; }
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
+  50%      { box-shadow: 0 0 0 8px rgba(0,255,136,0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ripple {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.fade-up { animation: fadeUp 0.5s ease forwards; }
+
+/* Utility */
+.text-green  { color: var(--green); }
+.text-amber  { color: var(--amber); }
+.text-red    { color: var(--red); }
+.text-blue   { color: var(--blue); }
+.text-muted  { color: var(--muted); }
+.text-purple { color: var(--purple); }
+
+.font-display { font-family: var(--font-display); }
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: var(--border2);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 10px;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.5px;
+  background: rgba(0,255,136,0.1);
+  color: var(--green);
+  border: 1px solid rgba(0,255,136,0.2);
+}
+.badge.amber { background: rgba(255,170,0,0.1); color: var(--amber); border-color: rgba(255,170,0,0.25); }
+.badge.red   { background: rgba(255,68,68,0.1); color: var(--red); border-color: rgba(255,68,68,0.25); }
+.badge.blue  { background: rgba(0,207,255,0.1); color: var(--blue); border-color: rgba(0,207,255,0.25); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-display); font-weight: 700; font-size: 12px;
+  padding: 9px 18px; border-radius: var(--radius-sm);
+  border: none; cursor: pointer; letter-spacing: 0.3px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--green); color: var(--bg);
+}
+.btn-primary:hover {
+  background: var(--green2); transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,255,136,0.3);
+}
+.btn-ghost {
+  background: transparent; color: var(--green);
+  border: 1px solid rgba(0,255,136,0.3);
+}
+.btn-ghost:hover {
+  background: rgba(0,255,136,0.08);
+}
+.btn-danger {
+  background: rgba(255,68,68,0.1); color: var(--red);
+  border: 1px solid rgba(255,68,68,0.3);
+}
+
+/* Live dot */
+.live-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  background: var(--green); border-radius: 50%;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+/* Progress bar */
+.progress-track {
+  height: 5px; background: var(--surface2);
+  border-radius: 3px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 3px;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Score pills */
+.score-A { background: rgba(0,255,136,0.15); color: var(--green); }
+.score-B { background: rgba(0,207,255,0.15); color: var(--blue); }
+.score-C { background: rgba(255,170,0,0.15); color: var(--amber); }
+.score-D { background: rgba(255,68,68,0.15); color: var(--red); }
+
+.score-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 20px; border-radius: 4px;
+  font-size: 10px; font-weight: 700;
+}
+
+/* Loader */
+.spinner {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--border2);
+  border-top-color: var(--green);
+  animation: spin 0.8s linear infinite;
+}
+
+/* Recharts custom */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(14,46,38,0.6) !important;
+}
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: var(--surface2) !important;
+  border: 1px solid var(--border2) !important;
+  border-radius: 8px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+}
